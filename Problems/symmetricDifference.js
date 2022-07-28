@@ -23,7 +23,7 @@ function sym(args) {
     }
     return res;
 }
-  function symDifference(input1, input2) {
+function symDifference(input1, input2) {
     let symRes = [];
     let maxInput = [...input1];
     let minInput = [...input2];
@@ -36,9 +36,9 @@ function sym(args) {
     symRes = [...getSymDifference(maxInput,minInput), ...getSymDifference(minInput,maxInput)]
     return symRes.sort() // todo
   
-  }
+}
 
-  function getSymDifference(input1,input2){
+function getSymDifference(input1,input2){
       let resArr = [];
 
     // use of for loop
@@ -55,5 +55,49 @@ function sym(args) {
       }
       return resArr;
 
+}
+
+//improve version of getSyDifference
+// n2
+
+function sysDifferenceOfTwo(input1, input2) {
+  // remove duplicate items from  input
+  const arg1 = new Set(input1);
+  const arg2 = new Set(input2);
+  const combinedArr = [...arg1,...arg2];
+ 
+  // to keep a count use object
+  const objCount = {};
+
+// for of iterates over  value
+console.log(combinedArr);
+  for(const el of combinedArr){
+    if(el in objCount){
+       objCount[el]++;
+    } else {
+      objCount[el] = 1;
+    }
   }
-  console.log(sym([1, 2, 3], [5, 2, 1, 4])); // [3,4,5]
+  console.log(objCount);
+  const output = [];
+// for in iterates over keys  
+  for(const item in objCount){
+    if(objCount[item] ===1){
+      output.push(parseInt(item));
+    }
+  }
+  return output
+}
+
+
+function findSymDifferenceOfAnyInputs(){
+  const args = [...arguments];
+  // this is  fixed condition to starts with 
+  let result = sysDifferenceOfTwo(args[0],args[1]);
+  for(let i=2; i< args.length;i++){
+    result=sysDifferenceOfTwo(result,args[i])
+  }
+  return result
+}
+
+console.log(findSymDifferenceOfAnyInputs([1, 2, 3], [5, 2, 1, 4],[9,4,2,2,33,11,22,4,5,2],[11,23,22])); // [3,4,5]
