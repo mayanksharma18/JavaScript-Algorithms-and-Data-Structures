@@ -1,5 +1,12 @@
 //A double linkedlist will have next and prev pointer
 
+class Node{
+    constructor(data,next,prev){
+        this.data=data;
+        this.next=next;
+        this.prev=prev;
+    }
+}
 class Linkedlist{
     constructor(){
         this.head=null;
@@ -38,13 +45,7 @@ class Linkedlist{
     }
 }
 
-class Node{
-    constructor(data,next,prev){
-        this.data=data;
-        this.next=next;
-        this.prev=prev;
-    }
-}
+
 
 let ll=new Linkedlist();
 ll.addTohead(11)
